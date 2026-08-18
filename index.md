@@ -4,8 +4,7 @@ title: Portfolio Home
 hide: true
 show_reading_time: false
 ---
-
-Hi! My name is [Your Full Name]
+Hi! My name is Arnav Dhere
 
 ### Development Environment
 
