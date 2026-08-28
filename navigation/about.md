@@ -7,7 +7,7 @@ comments: true
 
 ## As a conversation Starter
 
-Here are some places I have lived.
+Here are some places I really want to go to.
 
 <comment>
 Flags are made using Wikipedia images
@@ -61,24 +61,24 @@ Flags are made using Wikipedia images
     var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
     var living_in_the_world = [
   {
-    flag: "a/a5/Flag_of_the_United_Kingdom_(1-2).svg",
-    greeting: "Hullo",
-    description: "United Kingdom of Great Britain and North Ireland - 225 years"
+    flag: "3/3e/Flag_of_New_Zealand.svg?utm_source=en.wikipedia.org",
+    greeting: "Kia ora",
+    description: "New Zealand"
   },
   {
     flag: "b/be/Flag_of_England.svg",
-    greeting: "Alright mate",
-    description: "England - 2 years"
+    greeting: "A'right",
+    description: "England"
   },
   {
-    flag: "d/dc/Flag_of_Wales.svg?",
-    greeting: "Helo",
-    description: "Wales - 67 years"
+    flag: "d/d9/Flag_of_Canada_%28Pantone%29.svg",
+    greeting: "Eh?",
+    description: "Canada"
   },
   {
-    flag: "un1/10/Flag_of_Scotland.svg",
-    greeting: "Awrite?",
-    description: "Scotland - 23 years"
+    flag: "d/d9/Flag_of_Norway.svg",
+    greeting: "Hei",
+    description: "Norway"
   },
 ];
     // 3a. Consider how to update style count for size of container
@@ -111,7 +111,7 @@ Flags are made using Wikipedia images
         container.appendChild(gridItem);
     }
 </script>
-
+## 
 <!-- <comment>
 Gallery of Pics, scroll to the right for more ...
 </comment> -->
