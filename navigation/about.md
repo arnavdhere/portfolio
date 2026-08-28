@@ -112,21 +112,12 @@ Flags are made using Wikipedia images
     }
 </script>
 ## FOOD
-<comment>
+<-- <comment>
 La Galeria de la comida, scroll to the right for more ...
 </comment> -->
-<!-- <div class="image-gallery">
-  <img src="{{site.baseurl}}/images/about/missionary.jpg" alt="Image 1">
-  <img src="{{site.baseurl}}/images/about/john_tamara.jpg" alt="Image 2">
-  <img src="{{site.baseurl}}/images/about/tamara_fam.jpg" alt="Image 3">
-  <img src="{{site.baseurl}}/images/about/surf.jpg" alt="Image 4">
-  <img src="{{site.baseurl}}/images/about/john_lora.jpg" alt="Image 5">
-  <img src="{{site.baseurl}}/images/about/lora_fam.jpg" alt="Image 6">
-  <img src="{{site.baseurl}}/images/about/lora_fam2.jpg" alt="Image 7">
-  <img src="{{site.baseurl}}/images/about/pj_party.jpg" alt="Image 8">
-  <img src="{{site.baseurl}}/images/about/trent_family.png" alt="Image 9">
-  <img src="{{site.baseurl}}/images/about/claire.jpg" alt="Image 10">
-  <img src="{{site.baseurl}}/images/about/grandkids.jpg" alt="Image 11">
-  <img src="{{site.baseurl}}/images/about/farm.jpg" alt="Image 12">
-</div>
--->
+<div class="image-gallery">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Grilled_cheese_sandwich_with_roasted_tomato_soup.jpg" alt="Image 1">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg" alt="Image 2">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Italian_Sandwich.jpeg/250px-Italian_Sandwich.jpeg" alt="Image 3">
+  
+</div> 
