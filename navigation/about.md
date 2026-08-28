@@ -119,6 +119,6 @@ La Galeria de la comida, scroll to the right for more ...
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Grilled_cheese_sandwich_with_roasted_tomato_soup.jpg" alt="Image 1">
   <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg" alt="Image 2">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Italian_Sandwich.jpeg/250px-Italian_Sandwich.jpeg" alt="Image 3">
-  <img src="<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Original_Mac_n_Cheese_.jpg" alt="Image 3">" alt="Image 4">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Original_Mac_n_Cheese_.jpg" alt="Image 3">" alt="Image 4">
   
 </div> 
