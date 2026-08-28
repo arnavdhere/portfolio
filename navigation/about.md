@@ -111,9 +111,9 @@ Flags are made using Wikipedia images
         container.appendChild(gridItem);
     }
 </script>
-## 
-<!-- <comment>
-Gallery of Pics, scroll to the right for more ...
+## FOOD
+<comment>
+La Galeria de la comida, scroll to the right for more ...
 </comment> -->
 <!-- <div class="image-gallery">
   <img src="{{site.baseurl}}/images/about/missionary.jpg" alt="Image 1">
