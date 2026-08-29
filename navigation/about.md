@@ -111,7 +111,13 @@ Flags are made using Wikipedia images
         container.appendChild(gridItem);
     }
 </script>
-## FOOD
+## More about me
+- I am a freshman at Del Norte. 
+- I love to read, swim, or eat (I'm still trying to do all three at the same time). 
+- I love cooking with olives, cheese and bread so pizza and flatbread are some of my favorite food.
+- I particularly like comfort food like mac & cheese, grilled cheese.
+- Right now, I'm trying to read Dune (it feels like it was written in Old English).
+
 <comment>
 La Galeria de la comida, scroll to the right for more ...
 </comment>
