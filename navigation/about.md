@@ -7,7 +7,7 @@ comments: true
 
 ## As a conversation Starter
 
-Here are some places I really want to go to.
+Here are the states I have been to.
 
 <comment>
 Flags are made using Wikipedia images
@@ -58,27 +58,22 @@ Flags are made using Wikipedia images
     var container = document.getElementById("grid_container"); // This container connects to the HTML div
 
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
-    var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
+    var http_source = "https://upload.wikimedia.org/wikipedia/";
     var living_in_the_world = [
   {
-    flag: "3/3e/Flag_of_New_Zealand.svg?utm_source=en.wikipedia.org",
-    greeting: "Kia ora",
-    description: "New Zealand"
+    flag: "commons/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg",
+    greeting: "Hello",
+    description: "United States"
   },
   {
-    flag: "b/be/Flag_of_England.svg",
+    flag: "en/b/be/Flag_of_England.svg",
     greeting: "A'right",
     description: "England"
-  },
+  }, 
   {
-    flag: "d/d9/Flag_of_Canada_%28Pantone%29.svg",
-    greeting: "Eh?",
-    description: "Canada"
-  },
-  {
-    flag: "d/d9/Flag_of_Norway.svg",
-    greeting: "Hei",
-    description: "Norway"
+    flag: "en/4/41/Flag_of_India.svg",
+    greeting: "Namaste",
+    description: "India"
   },
 ];
     // 3a. Consider how to update style count for size of container
