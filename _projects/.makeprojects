@@ -12,8 +12,7 @@
 # Games
 games/cs-pathway:dev
 games/gamify:dev
-games/mygame:dev
-
+games/bankgame:dev
 # Systems
 #systems/student-management-groups
 
