@@ -5,9 +5,9 @@ import GameControl from '@assets/js/GameEnginev1.1/essentials/GameControl.js';
 import Shark from '@assets/js/GameEnginev1.1/Shark.js';
 import GameLevelStarWars from './GameLevelStarWars.js';
 
-class GameLevelWater {
+class BankGame {
   constructor(gameEnv) {
-    console.log("Initializing GameLevelWater...");
+    console.log("Initializing BankGame...");
     
     // Store the game environment reference
     this.gameEnv = gameEnv;
@@ -17,52 +17,51 @@ class GameLevelWater {
     let path = gameEnv.path;
 
     // Background data
-    const image_src_water = path + "/images/projects/gamify/water/deepseadungeon.jpeg";
+    const image_src_water = path + "/images/projects/bankgame/bankbg.png";
     const image_data_water = {
-        id: 'Water',
+        id: 'Bank',
         src: image_src_water,
         pixels: {height: 597, width: 340}
     };
 
     // Player Data for Octopus
-    const sprite_src_octopus = path + "/images/projects/gamify/water/octopus.png"; // be sure to include the path
-    const OCTOPUS_SCALE_FACTOR = 5;
-    const sprite_data_octopus = {
-        id: 'Octopus',
+    const sprite_src_robber = path + "/images/projects/bankgame/chillguy.png"; // be sure to include the path
+    const CHILLGUY_SCALE_FACTOR = 5;
+    const sprite_data_robber = {
+        id: 'Robber',
         name: 'mainplayer',
-        greeting: "Hi I am Octopus, the water wanderer. I am looking for wisdome and adventure!",
-        src: sprite_src_octopus,
-        SCALE_FACTOR: OCTOPUS_SCALE_FACTOR,
+        greeting: "Hi I am a bank robber. I am trying to get rich quick.  I need to get to the bank and get the money before the police catch me.",
+        src: sprite_src_robber,
+        SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 50,
-        GRAVITY: true,
-        INIT_POSITION: { x: 0, y: height - (height/OCTOPUS_SCALE_FACTOR) }, 
-        pixels: {height: 250, width: 167},
-        orientation: {rows: 3, columns: 2 },
-        down: {row: 0, start: 0, columns: 2 },
-        downLeft: {row: 0, start: 0, columns: 2, mirror: true, rotate: Math.PI/16 }, // mirror is used to flip the sprite
-        downRight: {row: 0, start: 0, columns: 2, rotate: -Math.PI/16 },
-        left: {row: 1, start: 0, columns: 2, mirror: true }, // mirror is used to flip the sprite
-        right: {row: 1, start: 0, columns: 2 },
-        up: {row: 0, start: 0, columns: 2},
-        upLeft: {row: 1, start: 0, columns: 2, mirror: true, rotate: -Math.Pi/16 }, // mirror is used to flip the sprite
-        upRight: {row: 1, start: 0, columns: 2, rotate: Math.PI/16 },
-        hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
+        INIT_POSITION: { x: 0.0, y: 0.9 },  // 0% from left, 90% from top (near bottom)
+        pixels: {height: 384, width: 512},
+        orientation: {rows: 3, columns: 4 },
+        down: {row: 0, start: 0, columns: 3 },
+        downRight: {row: 1, start: 0, columns: 3, rotate: Math.PI/16 },
+        downLeft: {row: 2, start: 0, columns: 3, rotate: -Math.PI/16 },
+        left: {row: 2, start: 0, columns: 3 },
+        right: {row: 1, start: 0, columns: 3 },
+        up: {row: 3, start: 0, columns: 3 },
+        upLeft: {row: 2, start: 0, columns: 3, rotate: Math.PI/16 },
+        upRight: {row: 1, start: 0, columns: 3, rotate: -Math.PI/16 },
+        hitbox: { widthPercentage: 0.45, heightPercentage: 0.4 },
         keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
     // NPC Data for Byte Nomad (Smaller Version)
-    const sprite_src_nomad = path + "/images/projects/gamify/water/animwizard.png"; // be sure to include the path
+    const sprite_src_vaultdoor = path + "/images/projects/bankgame/bankvaultdoor.png"; // be sure to include the path
     const sprite_data_nomad = {
-        id: 'JavaWorld',
-        greeting: "Hi I am Java Portal.  Leave this world and go on a Java adventure!",
-        src: sprite_src_nomad,
+        id: 'VaultDoor',
+        greeting: "You've reached the bank vault door. Enter for your reward.",
+        src: sprite_src_vaultdoor,
         SCALE_FACTOR: 10,  // Adjust this based on your scaling needs
         ANIMATION_RATE: 100,
-        pixels: {height: 307, width: 813},
+        pixels: {height: 370, width: 460},
         INIT_POSITION: { x: (width * 3 / 4), y: (height * 1 / 4)},
-        orientation: {rows: 3, columns: 7 },
-        down: {row: 1, start: 0, columns: 6 },  // This is the stationary npc, down is default 
+        orientation: {rows: 1, columns: 1 },
+        down: {row: 0, start: 0, columns: 1 },  // This is the stationary npc, down is default 
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
         /* Interact function
         *  This function is called when the player interacts with the NPC
@@ -74,7 +73,7 @@ class GameLevelWater {
           // Define the game in game level
           let levelArray = [GameLevelStarWars];
           // Define a new GameControl instance with the StarWars level
-          let gameInGame = new GameControl(path,levelArray);
+          let gameInGame = new GameControl(gameEnv.game, levelArray);
           // Pause the primary game 
           primaryGame.pause();
           // Start the game in game
@@ -88,19 +87,20 @@ class GameLevelWater {
       };
 
      // Shark Data
-    const sprite_src_shark = path + "/images/projects/gamify/water/shark.png"; // be sure to include the path
-    const sprite_data_shark = {
-        id: 'Shark',
-        greeting: "Enemy Shark",
-        src: sprite_src_shark,
+    const sprite_src_bankguard = path + "/images/projects/bankgame/bankguard.png"; // be sure to include the path
+    const sprite_data_bankguard = {
+        id: 'Bank Guard',
+        greeting: "You've been caught by the bank guard! Game over.",
+        src: sprite_src_bankguard,
         SCALE_FACTOR: 5,
         ANIMATION_RATE: 100,
-        pixels: {height: 225, width: 225},
+        pixels: {height: 496, width: 404},
         INIT_POSITION: { x: 100, y: 100},
-        orientation: {rows: 1, columns: 1 },
-        down: {row: 0, start: 0, columns: 1, wiggle: 0.005 },
-        right: {row: 0, start: 0, columns: 1, wiggle: 0.005 },
-        left: {row: 0, start: 0, columns: 1, wiggle: 0.005, mirror: true }, // mirror is used to flip the sprite
+        orientation: {rows: 4, columns: 4 },
+        down: {row: 0, start: 0, columns: 4, wiggle: 0.005 },
+        right: {row: 1, start: 0, columns: 4, wiggle: 0.005 },
+        left: {row: 2, start: 0, columns: 4, wiggle: 0.005 },
+        up: {row: 3, start: 0, columns: 4, wiggle: 0.005 },
         hitbox: { widthPercentage: 0.25, heightPercentage: 0.55
          },
           //walking area creates the box where the Shark can walk in 
@@ -116,7 +116,7 @@ class GameLevelWater {
       };
 
     // Nezuko NPC sprite data
-    const sprite_src_nezuko = path + "/images/projects/gamify/water/nezuko.png"; // be sure to include the path
+    const sprite_src_nezuko = path + "/images/projects/bankgame/water/nezuko.png"; // be sure to include the path
     const sprite_greet_nezuko = "I've never seen you before. Are you lost? Well, even if you are.. I don't think I'm going to help you get out of here.";
     const platformerLink = "https://pages.opencodingsociety.com/navigation/game.html"; // Replace this with your actual platformer game link
 
@@ -137,33 +137,20 @@ class GameLevelWater {
       }
     };
 
-const sprite_src_puffer = path + "/images/projects/gamify/water/puffer.png";
-    const sprite_data_puffer = {
-      id: 'Pufferfish',
-      greeting: "Enemy Pufferfish",
-      src: sprite_src_puffer,
+    const sprite_src_bankguard2 = path + "/images/projects/bankgame/bankguard.png";
+    const sprite_data_bankguard2 = {
+      id: 'Bank Guard2',
+      greeting: "You've been caught by the bank guard! Game over.",
+      src: sprite_src_bankguard2,
       SCALE_FACTOR: 5,
-      ANIMATION_RATE: 50,
-      INIT_POSITION: { x: (width * 1 / 4), y: (height * 2 / 4)},
-      pixels: { width: 304, height: 200  },
-      orientation: { rows: 3, columns: 6 },
-      down: { row: 1, start: 0, columns: 6 },
-      hitbox: { widthPercentage: 0.25, heightPercentage: 0.55 }
-    };
-
-    const sprite_src_gold = path + "/images/projects/gamify/water/gold.png";
-    const sprite_data_gold = {
-      id: 'Goldfish',
-      greeting: "Enemy Goldfish",
-      src: sprite_src_gold,
-      SCALE_FACTOR: 8,
       ANIMATION_RATE: 15,
-      pixels: { width: 200, height: 100 },
+      pixels: { width: 404, height: 496 },
       INIT_POSITION: { x: width / 2, y: height / 2 },
-      orientation: { rows: 1, columns: 2 },
-      down: { row: 0, start: 0, columns: 2 },
-      right: {row: 0, start: 0, columns: 2, wiggle: 0.005 },
-      left: {row: 0, start: 0, columns: 2, wiggle: 0.005, mirror: true }, // mirror is used to flip the sprite
+      orientation: { rows: 4, columns: 4 },
+      down: { row: 0, start: 0, columns: 4 },
+      right: {row: 1, start: 0, columns: 4, wiggle: 0.005 },
+      left: {row: 2, start: 0, columns: 4, wiggle: 0.005 },
+      up: {row: 3, start: 0, columns: 4 },
       walkingArea: {
           xMin: 0, //left boundary
           xMax: width, //right boundary 
@@ -178,13 +165,13 @@ const sprite_src_puffer = path + "/images/projects/gamify/water/puffer.png";
 
     this.classes = [      
       { class: GameEnvBackground, data: image_data_water },
-      { class: Player, data: sprite_data_octopus },
+      { class: Player, data: sprite_data_robber },
       { class: Npc, data: sprite_data_nomad },
       { class: Npc, data: sprite_data_nezuko },
-      { class: Shark, data: sprite_data_shark },
-      { class: Npc, data: sprite_data_gold }
+      { class: Npc, data: sprite_data_bankguard2 },
+      { class: Npc, data: sprite_data_bankguard }
     ];
   }
 }
 
-export default GameLevelWater;
+export default BankGame;
