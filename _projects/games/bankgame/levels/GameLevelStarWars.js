@@ -19,37 +19,35 @@ class GameLevelStarWars {
     };
 
     // Player data for snowspeeder
-    const sprite_src_snowspeeder = path + "/images/projects/bankgame/chillguy.png"; // be sure to include the path
-    const SNOWSPEEDER_SCALE_FACTOR = 6;
-    const sprite_data_snowspeeder = {
-        id: 'player',
-        greeting: "Hi I am the bank robber. I am trying to take all the money in the vault!",
-        src: sprite_src_snowspeeder,
-        SCALE_FACTOR: SNOWSPEEDER_SCALE_FACTOR,
+    const sprite_src_robber = path + "/images/projects/bankgame/chillguy.png"; // be sure to include the path
+    const CHILLGUY_SCALE_FACTOR = 5;
+    const sprite_data_robber = {
+        id: 'Robber',
+        name: 'mainplayer',
+        greeting: "Hi I am a bank robber. I am trying to get rich quick.  I need to get to the bank and get the money before the police catch me.",
+        src: sprite_src_robber,
+        SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 50,
-        INIT_POSITION: { x: 0, y: 0 }, 
-        pixels: {height: 293, width: 358},
-        orientation: {rows: 1, columns: 1 },
-        down: {row: 0, start: 0, columns: 1, rotate: -Math.PI/2 },
-        downRight: {row: 0, start: 0, columns: 1, rotate: -3*Math.PI/4 },
-        downLeft: {row: 0, start: 0, columns: 1, rotate: -Math.PI/4 },
-        left: {row: 0, start: 0, columns: 1 },
-        right: {row: 0, start: 0, columns: 1, rotate: Math.PI },
-        up: {row: 0, start: 0, columns: 1, rotate: Math.PI/2 },
-        upLeft: {row: 0, start: 0, columns: 1, rotate: Math.PI/4 },
-        upRight: {row: 0, start: 0, columns: 1, rotate: 3*Math.PI/4 },
-        hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
-        keypress: { up: 87, left: 65, down: 83, right: 68 }, // W, A, S, D
-        reaction: function() {
-          alert("We just got hit by a projectile!");
-        }
+        INIT_POSITION: { x: 0.0, y: 0.9 },  // 0% from left, 90% from top (near bottom)
+        pixels: {height: 384, width: 512},
+        orientation: {rows: 3, columns: 4 },
+        down: {row: 0, start: 0, columns: 3 },
+        downRight: {row: 1, start: 0, columns: 3, rotate: Math.PI/16 },
+        downLeft: {row: 2, start: 0, columns: 3, rotate: -Math.PI/16 },
+        left: {row: 2, start: 0, columns: 3 },
+        right: {row: 1, start: 0, columns: 3 },
+        up: {row: 3, start: 0, columns: 3 },
+        upLeft: {row: 2, start: 0, columns: 3, rotate: Math.PI/16 },
+        upRight: {row: 1, start: 0, columns: 3, rotate: -Math.PI/16 },
+        hitbox: { widthPercentage: 0.45, heightPercentage: 0.4 },
+        keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
 
     // List of objects definitions for this level
     this.classes = [
       { class: GameEnvBackground, data: image__data_bankvault },
-      { class: Player, data: sprite_data_snowspeeder },
+      { class: Player, data: sprite_data_robber },
     ];
   }
 }
