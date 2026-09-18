@@ -7,8 +7,10 @@ SHELL = /bin/bash -c
 .SHELLFLAGS = -e
 
 NOTEBOOK_FILES := $(shell find _notebooks -name '*.ipynb')
+NOTEBOOK_MARKDOWN_FILES := $(shell find _notebooks -name '*_IPYNB_2_.md')
 DESTINATION_DIRECTORY = _posts
 MARKDOWN_FILES := $(patsubst _notebooks/%.ipynb,$(DESTINATION_DIRECTORY)/%_IPYNB_2_.md,$(NOTEBOOK_FILES))
+SOURCE_MARKDOWN_FILES := $(patsubst _notebooks/%.md,$(DESTINATION_DIRECTORY)/%.md,$(NOTEBOOK_MARKDOWN_FILES))
 
 ###########################################
 # Project Selection Logic
@@ -24,7 +26,7 @@ DEV_PROJECTS := $(shell grep -v '^\#' $(PROJECT_FILE) 2>/dev/null | grep -v '^$$
 
 # Known top-level targets (add to this if needed)
 KNOWN_TARGETS := \
-	default dev serve build clean stop reload refresh help \
+	default dev serve build clean stop reload refresh help serve-fast serve-current \
 	serve-minima serve-cayman serve-yat serve-so-simple serve-hydejack \
 	build-minima build-cayman build-yat build-so-simple \
 	convert convert-docx convert-docx-config convert-single convert-registered-notebooks \
@@ -80,7 +82,7 @@ define run_projects
 	done
 endef
 
-default: serve-current
+default: serve-fast
 	@touch /tmp/.notebook_watch_marker
 	@make watch-rebuild &
 	@make watch-notebooks &
@@ -250,7 +252,10 @@ clean-registered-projects:
 	$(call run_projects,$(ALL_PROJECTS),Cleaning,clean)
 	$(call run_projects,$(ALL_PROJECTS),Cleaning docs,docs-clean)
 
-# General serve target (uses whatever is in _config.yml/Gemfile)
+# Fast server start using existing generated project content.
+serve-fast: stop convert jekyll-serve
+
+# Full serve target (uses whatever is in _config.yml/Gemfile)
 serve-current: stop build-registered-projects convert split-courses build-registered-docs jekyll-serve
 
 # Build with selected theme
@@ -281,7 +286,12 @@ clean-courses:
 	@python3 scripts/split_multi_course_files.py clean
 
 # Notebook and DOCX conversion
-convert: $(MARKDOWN_FILES) convert-docx
+convert: $(MARKDOWN_FILES) $(SOURCE_MARKDOWN_FILES) convert-docx
+
+$(SOURCE_MARKDOWN_FILES): $(DESTINATION_DIRECTORY)/%.md: _notebooks/%.md
+	@mkdir -p $(@D)
+	@cp "$<" "$@"
+
 $(DESTINATION_DIRECTORY)/%_IPYNB_2_.md: _notebooks/%.ipynb
 	@mkdir -p $(@D)
 	@$(PYTHON) -c "from scripts.convert_notebooks import convert_notebooks; convert_notebooks()"
@@ -410,13 +420,13 @@ watch-rebuild:
 		sleep 1; \
 	done
 
-# Development mode: clean start, no conversion, converts files on save
+# Development mode: clean start, convert notebooks, then convert files on save
 # Runs in background - use 'make stop' to stop, 'tail -f /tmp/jekyll4500.log' to view logs
 dev: stop clean
 	@echo "DEV Projects: $(ACTIVE_DEV_PROJECTS)"
 	@$(MAKE) generate-makefiles
 	@$(MAKE) build-dev-projects ORIGINAL_GOALS="$(ORIGINAL_GOALS)"
-	@$(MAKE) convert-registered-notebooks ORIGINAL_GOALS="$(ORIGINAL_GOALS)"
+	@$(MAKE) convert ORIGINAL_GOALS="$(ORIGINAL_GOALS)"
 	@$(MAKE) jekyll-serve ORIGINAL_GOALS="$(ORIGINAL_GOALS)"
 	@echo "Initializing watch markers..."
 	@touch /tmp/.notebook_watch_marker /tmp/.project_watch_marker
@@ -436,10 +446,14 @@ dev: stop clean
 watch-notebooks:
 	@echo "Watching _notebooks for changes..."
 	@while true; do \
-		find _notebooks -name '*.ipynb' -newer /tmp/.notebook_watch_marker -print 2>/dev/null | \
+		find _notebooks \( -name '*.ipynb' -o -name '*_IPYNB_2_.md' \) -newer /tmp/.notebook_watch_marker -print 2>/dev/null | \
 			grep -v "_notebooks/projects/" | while read notebook; do \
-			echo "Notebook changed: $$notebook"; \
-			make convert-single NOTEBOOK_FILE="$$notebook"; \
+			echo "Notebook source changed: $$notebook"; \
+			if echo "$$notebook" | grep -q '\.ipynb$$'; then \
+				make convert-single NOTEBOOK_FILE="$$notebook"; \
+			else \
+				make convert; \
+			fi; \
 			touch /tmp/.jekyll_rebuild_trigger; \
 		done; \
 		touch /tmp/.notebook_watch_marker; \
@@ -474,9 +488,8 @@ watch-projects:
 
 # Bundle install (dependency for jekyll-serve)
 bundle-install:
-	@if [ ! -f .bundle/install_marker ] || [ Gemfile -nt .bundle/install_marker ] || [ Gemfile.lock -nt .bundle/install_marker ]; then \
-		bundle install; \
-		mkdir -p .bundle && touch .bundle/install_marker; \
+	@if [ ! -f .bundle/install_marker ] || [ Gemfile -nt .bundle/install_marker ] || [ Gemfile.lock -nt .bundle/install_marker ] || ! bundle check >/dev/null 2>&1; then \
+		bundle install && mkdir -p .bundle && touch .bundle/install_marker; \
 	fi
 
 # Start Jekyll server (no auto-watch, we control rebuilds manually)
