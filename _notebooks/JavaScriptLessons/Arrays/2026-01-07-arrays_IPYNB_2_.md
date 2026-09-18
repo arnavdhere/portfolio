@@ -333,70 +333,33 @@ export { GameControl };
 %}
 ## Looping Through Arrays
 
-Arrays are powerful when combined with loops. You can process each element without writing it by hand:
+Arrays are powerful when combined with loops. You can process each element without writing it by hand.
+You can use loops to update multiple things in an array
 
 
 
 {% capture challenge2 %}
-Modify the numbers array to see different outputs
+Run the code to see how to update multiple objects while resuing the same code.
 {% endcapture %}
 
 {% capture code2 %}
-// Using a for loop to go through each element
-let numbers = [10, 20, 30, 40, 50];
+// Array of enemy positions in a level
+let enemyPositions = [150, 300, 450, 600];
 
-console.log("Numbers in the array:");
-for (let num of numbers) {
-    console.log(num);
+// Example 1: Move every enemy forward by 10 pixels
+console.log("Updating enemy positions:");
+for (let pos of enemyPositions) {
+    let newPos = pos + 10;
+    console.log(`Enemy moved to position: ${newPos}`);
 }
 
-console.log();
-console.log("Double each number:");
-for (let num of numbers) {
-    console.log(num * 2);
-}
+// Example 2: Count how many enemies exist
+console.log(`Total active enemies: ${enemyPositions.length}`);
 
-console.log();
-console.log("Using index to access elements:");
-for (let i = 0; i < numbers.length; i++) {
-    // conversion fails with template literals
-    console.log(`Index ${i}: ${numbers[i]}`);
-    // conversion works with concat
-    console.log("Index " + i + ": " + numbers[i] );
-
-}
 {% endcapture %}
 
 {% capture source2 %}
-```javascript
-%%js
 
-// CODE_RUNNER: Modify the numbers array to see different outputs
-
-// Using a for loop to go through each element
-let numbers = [10, 20, 30, 40, 50];
-
-console.log("Numbers in the array:");
-for (let num of numbers) {
-    console.log(num);
-}
-
-console.log();
-console.log("Double each number:");
-for (let num of numbers) {
-    console.log(num * 2);
-}
-
-console.log();
-console.log("Using index to access elements:");
-for (let i = 0; i < numbers.length; i++) {
-    // conversion fails with template literals
-    console.log(`Index ${i}: ${numbers[i]}`);
-    // conversion works with concat
-    console.log("Index " + i + ": " + numbers[i] );
-
-}
-```
 {% endcapture %}
 
 {% include runners/code.html
@@ -407,8 +370,6 @@ for (let i = 0; i < numbers.length; i++) {
    source=source2
 %}
 
-
-## Real-World Example: Student Grades
 
 ## Key Takeaways
 * ***You need to use arrays to write code for your games.*** 
@@ -424,18 +385,9 @@ for (let i = 0; i < numbers.length; i++) {
 
 Welcome to the Arrays homework! These exercises will help you practice the key array concepts from the lesson: accessing elements, modifying arrays, looping through arrays, and performing calculations.
 
-Complete all exercises below. Good luck! 💪
-
 ---
 
-## Exercise 1: Array Basics - Access Elements
-
-Create an array with 5 different items (could be favorite movies, books, games, etc.). Then:
-1. Print the entire array
-2. Access and print the first element (index 0)
-3. Access and print the last element
-4. Print the total number of items in the array
-
+## Exercise 1: Array Basics - Use Arrays in a Game
 
 
 {% capture challenge4 %}
@@ -443,26 +395,25 @@ Exercise 1 - Array Basics
 {% endcapture %}
 
 {% capture code4 %}
-// TODO: Write your code here for Exercise 1
-// Create an array with 5 items
-// Print the array
-// Print the first element
-// Print the last element
-// Print the length
+// Starter Code:
+let enemySpeeds = [2, 4, 3, 5];
+
+// TODO:
+// 1. Create a loop that goes through enemySpeeds.
+// 2. Multiply each speed by 2 to activate "rage mode".
+// 3. Print the new speed for each enemy using console.log().
 {% endcapture %}
 
 {% capture source4 %}
 ```javascript
 %%js
+// Starter Code:
+let enemySpeeds = [2, 4, 3, 5];
 
-// CODE_RUNNER: Exercise 1 - Array Basics
-
-// TODO: Write your code here for Exercise 1
-// Create an array with 5 items
-// Print the array
-// Print the first element
-// Print the last element
-// Print the length
+// TODO:
+// 1. Create a loop that goes through enemySpeeds.
+// 2. Multiply each speed by 2 to activate "rage mode".
+// 3. Print the new speed for each enemy using console.log().
 
 ```
 {% endcapture %}
@@ -475,38 +426,34 @@ Exercise 1 - Array Basics
    source=source4
 %}
 
-
-## Exercise 2: Modify Arrays
-
-Start with this shopping list: `["milk", "eggs", "bread", "cheese"]`
-Then perform these operations:
-1. Print the original array
-2. Change the second item to "butter"
-3. Add "yogurt" to the end using push()
-4. Remove "bread" from the array
-5. Print the final array
-
+## Exercise 2 : More looping
 
 
 {% capture challenge5 %}
-Exercise 2 - Arrays Manipulation
+Exercise 1 - Array Basics
 {% endcapture %}
 
 {% capture code5 %}
-// TODO: Write your code here for Exercise 2
-// Start with the shopping list
-// Modify it as described above
+// Starter Code:
+let enemySpeeds = [2, 4, 3, 5];
+
+// TODO:
+// 1. Create a loop that goes through enemySpeeds.
+// 2. Multiply each speed by 2 to activate "rage mode".
+// 3. Print the new speed for each enemy using console.log().
 {% endcapture %}
 
 {% capture source5 %}
 ```javascript
 %%js
+// Starter Code:
+let enemySpeeds = [2, 4, 3, 5];
 
-// CODE_RUNNER: Exercise 2 - Arrays Manipulation
+// TODO:
+// 1. Create a loop that goes through enemySpeeds.
+// 2. Multiply each speed by 2 to activate "rage mode".
+// 3. Print the new speed for each enemy using console.log().
 
-// TODO: Write your code here for Exercise 2
-// Start with the shopping list
-// Modify it as described above
 ```
 {% endcapture %}
 
@@ -518,52 +465,40 @@ Exercise 2 - Arrays Manipulation
    source=source5
 %}
 
-
-## Exercise 3: Loop Through an Array
-
-Create an array with 5 numbers: `[10, 25, 30, 15, 20]`
-
-Write a loop that:
-1. Prints each number with a message (e.g., "Number: 10")
-2. Prints each number multiplied by 2
-3. Calculates and prints the sum of all numbers
+## Exercise 3 : Modifying Arrays
 
 
-
-{% capture challenge6 %}
-Exercise 3 - Arrays Manipulation
+{% capture challenge7 %}
+Exercise 1 - Array Basics
 {% endcapture %}
 
-{% capture code6 %}
-// TODO: Write your code here for Exercise 3
-// Create the numbers array
-// Loop through and print each number
-// Print each number multiplied by 2
-// Calculate and print the sum
+{% capture code7 %}
+// Starter Code:
+let playerInventory = ["Sword", "Shield", "Health Potion", "Key"];
+
+// TODO:
+// 1. Add "Magic Ring" to the end of playerInventory using push().
+// 2. Change "Health Potion" to "Empty Bottle" (simulating using the item).
+// 3. Loop through playerInventory using a for...of loop and print each item.
 {% endcapture %}
 
-{% capture source6 %}
+{% capture source7 %}
 ```javascript
 %%js
+// Starter Code:
+let playerInventory = ["Sword", "Shield", "Health Potion", "Key"];
 
-// CODE_RUNNER: Exercise 3 - Arrays Manipulation
-
-// TODO: Write your code here for Exercise 3
-// Create the numbers array
-// Loop through and print each number
-// Print each number multiplied by 2
-// Calculate and print the sum
-
+// TODO:
+// 1. Add "Magic Ring" to the end of playerInventory using push().
+// 2. Change "Health Potion" to "Empty Bottle" (simulating using the item).
+// 3. Loop through playerInventory using a for...of loop and print each item.
 ```
 {% endcapture %}
 
 {% include runners/code.html
-   runner_id="js-arrays-6"
+   runner_id="js-arrays-7"
    language="javascript"
-   challenge=challenge6
-   code=code6
-   source=source6
+   challenge=challenge7
+   code=code7
+   source=source7
 %}
-
-
-Google form link is here: https://forms.gle/X47CB92yKuLVRHq98 
