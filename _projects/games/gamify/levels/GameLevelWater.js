@@ -137,7 +137,7 @@ class GameLevelWater {
       }
     };
 
-const sprite_src_puffer = path + "/images/projects/gamify/water/puffer.png";
+    const sprite_src_puffer = path + "/images/projects/gamify/water/puffer.png";
     const sprite_data_puffer = {
       id: 'Pufferfish',
       greeting: "Enemy Pufferfish",
